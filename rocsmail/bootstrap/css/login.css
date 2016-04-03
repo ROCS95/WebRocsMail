@@ -1,0 +1,50 @@
+html{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	background-image: url("img/background.jpg");
+}
+header{
+	width:20%;
+}
+.loginbox{
+	background-color: #FFF0DD;
+	border-radius: 4px;
+	margin: 5%;
+	padding-bottom: 40px;
+	border-style: groove;
+	border-color: #DCB3A7;
+}
+.loginbox > label{
+	margin: 4%;
+}
+.colors{
+	background-color: #A9E1C8;
+	border-radius: 26px 26px 26px 26px;
+	margin: 2%;
+	height: 22%;
+	border-style: groove;
+	border-color: #2F9265;
+}
+.colors > h1 {
+	position: relative;
+	float: right;
+	margin:1%;
+}
+.colors > img{
+	float: left;
+}
+span{
+	margin-bottom:5%;
+  	font-size: 150%
+}
+input[type="button"]{
+	margin-top: 2%;
+}
+
+input{
+	margin-left: 2%;
+
+}
