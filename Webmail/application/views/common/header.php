@@ -4,10 +4,13 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Daltic">
+        <meta name="author" content="Robert">
 
         <title>RocsMail</title>
         <link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.min.css"); ?>" />
+        <link rel="stylesheet" href="<?php echo base_url("assets/common/css/common.css"); ?>" />
+<link rel="stylesheet" href="<?php echo base_url("assets/Kendo/styles/kendo.common.min.css"); ?>" />
+<link rel="stylesheet" href="<?php echo base_url("assets/Kendo/styles/kendo.fiori.min.css"); ?>" />
 
     </head>
 <body class="index">
@@ -28,9 +31,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                     <?php
-                            if (is_logged()) {
-                                ?>
+                    
                                 <li>
                                     <a href="<?php echo base_url("wa/Dashboard") ?>">Admistra Correo</a>
                                 </li>
@@ -42,7 +43,7 @@
                                     echo'<a title="Cerrar Sesión" href="' . base_url("wa/Auth/logout") . '"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>';
                                     ?>
                                 </li>
-                                <?php } ?>
+                                
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
