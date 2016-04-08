@@ -53,8 +53,7 @@ class Email extends CI_Controller {
             $data['destinatario'] = $this->input->post('destinatario');
             $data['asunto'] = $this->input->post('asunto');
             $data['cuerpo'] = $this->input->post('cuerpo');
-            $data['tipo'] = $this->input->post(1);
-
+            $data['estado'] = 1;
 
 
             $id_email=$this->input->post('id');
