@@ -11,9 +11,10 @@ class Email_Model extends CI_Model
                 parent::__construct();
         }
 	
-	function get_all()
+	function get_send()
 	{
-		$this->db->select('*');
+		$tipo = 1;
+		$this->db->where('estado', $tipo);
 		$query= $this->db->get($this->table);
 			if($query->num_rows()>0)
 			{

@@ -31,7 +31,7 @@ class Email extends CI_Controller {
 	public function index()
 	{
 		$this->load->Model('Email_Model', 'EmailM', 'default');
-		$emails = $this->EmailM->get_all();
+		$emails = $this->EmailM->get_send();
 		$emailArray = array('data' => $emails);
 		$emailArray['message'] = $this->session->flashdata('message');
 		$this->load->view('email/index',$emailArray);
@@ -53,6 +53,7 @@ class Email extends CI_Controller {
             $data['destinatario'] = $this->input->post('destinatario');
             $data['asunto'] = $this->input->post('asunto');
             $data['cuerpo'] = $this->input->post('cuerpo');
+            $data['tipo'] = $this->input->post(1);
 
 
 
