@@ -33,14 +33,17 @@
                 <ul class="nav navbar-nav navbar-right">
                     
                                 <li>
-                                    <a href="<?php echo base_url("wa/Dashboard") ?>">Admistra Correo</a>
+                                    <a title="Salida" href="<?php echo base_url("index.php/email/index/") ?>"><span class="glyphicon glyphicon-send" aria-hidden="true">Salida</span></a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url("wa/Course/index") ?>">Administar Usuario</a>
+                                    <a title="Enviados" href="<?php echo base_url("index.php/enviados/index/") ?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true">Enviados</span></a>
+                                </li>
+                                <li>
+                                    <a title="Borradores" href="<?php echo base_url("index.php/borradores/index/") ?>"><span class="glyphicon glyphicon-list-alt" aria-hidden="true">Borradores</span></a>
                                 </li>
                                 <li>
                                     <?php
-                                    echo'<a title="Cerrar Sesión" href="' . base_url("wa/Auth/logout") . '"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>';
+                                    echo'<a title="Cerrar Sesión" href="' . base_url("") . '"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>';
                                     ?>
                                 </li>
                                 
