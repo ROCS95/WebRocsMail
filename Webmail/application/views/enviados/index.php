@@ -42,7 +42,7 @@
                                             <td><?php echo $app['asunto']; ?></td>
                                             <td>
        <?php
-echo '<a onclick="charge_modal(' . $app['id'] .',\'' . $app['remitente'] . '\''. ',\'' . $app['destinatario'] . '\''. ',\'' . $app['asunto'] . '\''. ',\''. $app['remitente'] .'\')" href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+echo '<a onclick="charge_modal(' . $app['id'] .',\'' . $app['remitente'] . '\''. ',\'' . $app['destinatario'] . '\''. ',\'' . $app['asunto'] . '\''. ',\''. $app['cuerpo'] .'\')" href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>';
 echo '<a href="delete/' . $app['id'] . '" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td></tr>';
                                                 ?>
                                             </td>
@@ -88,7 +88,7 @@ echo '<a href="delete/' . $app['id'] . '" role="button"><span class="glyphicon g
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <label for="cuerpo">cuerpo</label>
+                        <label for="cuerpo">Cuerpo</label>
                         <textarea id="cuerpo" name="cuerpo" type="text" rows="10" class="form-control"></textarea>
                     </div>
                 </div>              

@@ -11,9 +11,9 @@ class Enviados_Model extends CI_Model
                 parent::__construct();
         }
 	
-	function get_send()
+	function get_sended()
 	{
-		$tipo = 1;
+		$tipo = 2;
 		$this->db->where('estado', $tipo);
 		$query= $this->db->get($this->table);
 			if($query->num_rows()>0)

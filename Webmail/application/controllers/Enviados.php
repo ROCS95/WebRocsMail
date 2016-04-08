@@ -30,11 +30,11 @@ class Enviados extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->Model('Email_Model', 'EmailM', 'default');
-		$emails = $this->EmailM->get_send();
+		$this->load->Model('Enviados_Model', 'EnviadosM', 'default');
+		$emails = $this->EnviadosM->get_sended();
 		$emailArray = array('data' => $emails);
 		$emailArray['message'] = $this->session->flashdata('message');
-		$this->load->view('email/index',$emailArray);
+		$this->load->view('enviados/index',$emailArray);
 	}
 
 	function save() {
@@ -61,16 +61,16 @@ class Enviados extends CI_Controller {
 
             if ($this->form_validation->run() == true)
             {
-                $this->load->Model('Email_Model', 'EmailM', 'default');
+                $this->load->Model('Enviados_Model', 'EnviadosM', 'default');
                 if($id_email==="")
                 {
-                $id = $this->EmailM->create($data);
+                $id = $this->EnviadosM->create($data);
 
                 $this->session->set_flashdata('message', "Creado con éxito.");  
                 }
                 else
                 {
-                $id = $this->EmailM->update($id_email,$data);
+                $id = $this->EnviadosM->update($id_email,$data);
 
                 $this->session->set_flashdata('message', "Actualizado con éxito.");
                 }
@@ -93,11 +93,11 @@ class Enviados extends CI_Controller {
 
             $EmailData = array();
 
-            $this->load->Model('Email_Model', 'EmailM', 'default');
+            $this->load->Model('Enviados_Model', 'EnviadosM', 'default');
 
 
-                $Email = $this->EmailM->get($id);
-                $this->EmailM->delete($id);
+                $Email = $this->EnviadosM->get($id);
+                $this->EnviadosM->delete($id);
                 $this->session->set_flashdata('message', "Eliminado con éxito.");
                 redirect('Email/index/', 'refresh');
                 return;
