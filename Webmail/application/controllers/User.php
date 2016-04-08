@@ -4,7 +4,7 @@ class User extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
-	 *
+	 * 
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
 	 *	- or -
@@ -89,8 +89,8 @@ class User extends CI_Controller {
 
     function login(){
 
-        $this->form_validation->set_rules('email', 'Email', 'required|max_length[200]');
-        $this->form_validation->set_rules('password', 'Contraseña', 'required|max_length[200]');
+        $this->form_validation->set_rules('email', 'email', 'required|max_length[200]');
+        $this->form_validation->set_rules('password', 'password', 'required|max_length[200]');
 
             $mail['email'] = $this->input->post('email');
             $pass['password'] = $this->input->post('password]');

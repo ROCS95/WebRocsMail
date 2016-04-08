@@ -1,4 +1,56 @@
-<?php require_once(APPPATH . 'views/common/header.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Robert">
+
+        <title>RocsMail</title>
+        <link rel="stylesheet" href="<?php echo base_url("assets/bootstrap/css/bootstrap.min.css"); ?>" />
+        <link rel="stylesheet" href="<?php echo base_url("assets/common/css/common.css"); ?>" />
+<link rel="stylesheet" href="<?php echo base_url("assets/Kendo/styles/kendo.common.min.css"); ?>" />
+<link rel="stylesheet" href="<?php echo base_url("assets/Kendo/styles/kendo.fiori.min.css"); ?>" />
+
+    </head>
+<body class="index">
+
+        <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                                
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+        <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <h2>Rocsmail</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 <body>
 <div class="panel">
     <div class="panel-heading">
@@ -30,10 +82,11 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Apellidos</th>
-                                        <th>Fecha de nacimiento</th>
                                         <th>correo</th>
-                                        <th>Telefono</th>
                                         <th>Correo Alternativo</th>
+                                        <th>pass</th>
+                                        <th>Acciones</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
