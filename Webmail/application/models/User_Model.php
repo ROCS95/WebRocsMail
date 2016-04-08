@@ -29,7 +29,7 @@ class User_Model extends CI_Model
 
 	function autentificar($email, $password) {
 
-        $data = $this->db->query('SELECT `name`, `last_name` FROM `user` WHERE `email` = '.$email.' && `password` =' . $password);
+        $data = $this->db->query('SELECT name, last_name FROM user WHERE email = '.'\''.$email.'\''.' && password = '.'\''.$password.'\'');
         //return $this->db->get($this->table)->first_row();
         if ($data > 0) {
         	return $data;
