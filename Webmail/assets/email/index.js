@@ -17,7 +17,7 @@ $(document).ready(function () {
     $('#container-table').css("visibility", 'visible');
 });
 
-function charge_modal(id,remitente,destinatario,asunto,cuerpo)
+function charge_mymodal(id,remitente,destinatario,asunto,cuerpo)
 {   
     $("#id").val(id);
     $("#remitente").val(remitente);
@@ -26,6 +26,22 @@ function charge_modal(id,remitente,destinatario,asunto,cuerpo)
     $("#cuerpo").val(cuerpo);
 
     $('#myModal').data('show-callback', function() 
+    {
+    $("#remitente").focus();
+   
+
+    });
+};
+
+function charge_modal(id,remitente,destinatario,asunto,cuerpo)
+{   
+    $("#id").val(id);
+    $("#remitente").val(remitente);
+    $("#destinatario").val(destinatario);
+    $("#asunto").val(asunto);
+    $("#cuerpo").val(cuerpo);
+
+    $('#secModal').data('show-callback', function() 
     {
     $("#remitente").focus();
    

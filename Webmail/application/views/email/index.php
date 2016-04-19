@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="container-table" class="table-responsive" >
-                        <?php if ($data != null) { ?>
+                        <?php if ($emails != null) { ?>
                             <table id="grid" class="table table-bordered"  >
                                 <thead>
                                     <tr>
@@ -33,7 +33,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    foreach ($data as $app) {
+                                    foreach ($emails as $app) {
                                         ?>
 
                                         <tr>
@@ -42,8 +42,12 @@
                                             <td><?php echo $app['asunto']; ?></td>
                                             <td>
        <?php
-echo '<a onclick="charge_modal(' . $app['id'] .',\'' . $app['remitente'] . '\''. ',\'' . $app['destinatario'] . '\''. ',\'' . $app['asunto'] . '\''. ',\''. $app['cuerpo'] .'\')" href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
-echo '<a href="delete/' . $app['id'] . '" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td></tr>';
+       if ($state == 1 || $state == 3) {
+echo '<a onclick="charge_mymodal(' . $app['id'] .',\'' . $app['remitente'] . '\''. ',\'' . $app['destinatario'] . '\''. ',\'' . $app['asunto'] . '\''. ',\''. $app['cuerpo'] .'\')" href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+}else{
+echo '<a onclick="charge_modal(' . $app['id'] .',\'' . $app['remitente'] . '\''. ',\'' . $app['destinatario'] . '\''. ',\'' . $app['asunto'] . '\''. ',\''. $app['cuerpo'] .'\')" href="#" data-target="#secModal" data-toggle="modal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>';
+}
+echo '<a href="../delete/' . $app['id'] . '" role="button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td></tr>';
                                                 ?>
                                             </td>
                                         </tr>
@@ -76,7 +80,7 @@ echo '<a href="delete/' . $app['id'] . '" role="button"><span class="glyphicon g
            <?php echo form_open('Email/save/'); ?>
                 <div class="form-group col-xs-12">
                     <label for="remitente">Remitente</label>
-                    <input id="remitente" name="remitente" type="email" class="form-control">
+                    <input id="remitente" name="remitente" type="email" readonly="readonly" class="form-control" value = "<?php echo $username; ?>">
                 </div>
                 <div class="form-group col-xs-12">
                     <label for="destinatario">Destinatario</label>
@@ -100,6 +104,38 @@ echo '<a href="delete/' . $app['id'] . '" role="button"><span class="glyphicon g
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+<div id="secModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Correo</h4>
+            </div>    
+                <div class="form-group col-xs-12">
+                    <label for="remitente">Remitente</label>
+                    <input id="remitente" name="remitente" type="email" readonly="readonly" class="form-control" value = "<?php echo $username; ?>">
+                </div>
+                <div class="form-group col-xs-12">
+                    <label for="destinatario">Destinatario</label>
+                    <input id="destinatario" name="destinatario" type="email" readonly="readonly" class="form-control">
+                </div>
+                <div class="form-group col-xs-12">
+                    <label for="asunto">Asunto</label>
+                    <input id="asunto" name="asunto" type="text" readonly="readonly" class="form-control">
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <label for="cuerpo">cuerpo</label>
+                        <textarea id="cuerpo" name="cuerpo" readonly="readonly" type="text" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>              
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <?php require_once(APPPATH . 'views/common/scripts.php'); ?>
-<script type="text/javascript" src="<?php echo base_url("assets/user/index.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/email/index.js"); ?>"></script>

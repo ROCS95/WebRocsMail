@@ -108,16 +108,18 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('email', 'email', 'required|max_length[200]');
         $this->form_validation->set_rules('password', 'password', 'required|max_length[200]');
 
-            $mail['email'] = $this->input->post('email');
-            $pass['password'] = md5($this->input->post('password'));
+            $mail = $this->input->post('email');
+            $pass= md5($this->input->post('password'));
 
             $this->load->Model('User_Model', 'UserM', 'default');
 
             $user = $this->UserM->autentificar($mail, $pass);
-            if ($user != Null) {
-               redirect('Email/index/1', 'refresh');
+            if ($user =='NO') {
+               redirect('User/index/', 'refresh');
             }else{
-                redirect('user/index/', 'refresh');
+               $this->session->userdata('currentUser');
+                redirect('Email/index/1', 'refresh');
+                
             }
 
     }

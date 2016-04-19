@@ -102,7 +102,7 @@
                                             <td><?php echo $app['password']; ?></td>
                                             <td>
                                                 <?php
-                                                echo '<a onclick="charge_modal(' . $app['id'] .',\'' . $app['name'] . '\''. ',\'' . $app['last_name'] . '\''. ',\'' . $app['email'] . '\''. ',\'' . $app['other_email'] .'\''. ',\'' . $app['password'] .'\')" href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
+echo '<a onclick="charge_modal(' . $app['id'] .',\'' . $app['name'] . '\''. ',\'' . $app['last_name'] . '\''. ',\'' . $app['email'] . '\''. ',\'' . $app['other_email'] .'\''. ',\'' . $app['password'] .'\')" href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
                                                 ?>
                                             </td>
                                         </tr>
@@ -173,7 +173,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Usuarios</h4>
+                <h4 class="modal-title" id="myModalLabel1">Usuarios</h4>
             </div>    
             <?php echo form_open('User/login/'); ?>
                 <div class="form-group col-xs-12">

@@ -31,18 +31,19 @@ class User_Model extends CI_Model
 
 	function autentificar($email, $password) {
 
-        $data = $this->db->query('SELECT name, last_name FROM user WHERE email = '.'\''.$email.'\''.' AND password = '.'\''.$password.'\'');
-        //$this->db->select('name');
-        //$this->db->select(last_name);
-        //$this->db->WHERE('email' , $email);
-        //$this->db->WHERE('password' , $password);
-        //$query = $this->db->get($this->table);
-        if ($data != null/*$query->num_rows() === 1*/) {
-        	return $data /*$query*/;
-        }else{
-        	return null;
-        }
+        $query=$this->db->select('email')
+                        ->where('email',$email)
+                        ->where('password',$password)
+                        ->get('user');
+      
+        if($query->num_rows()>0)
+        {
+          return $query;
+       }
+       else
+        { return 'NO';}
     }
+    
 
     function active($id)
     {

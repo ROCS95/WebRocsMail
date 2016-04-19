@@ -30,14 +30,16 @@ class Email extends CI_Controller {
 
 	public function index($state)
 	{
-     $username = $session_id = $this->session->userdata('currentUser');
+     $username = $this->session->userdata('currentUser');
 
       $this->load->Model('Email_Model', 'EmailM', 'default');
-
+      $username = "rtchacon@gmail.com";
       if($state==1||$state==2||$state==3)
-      {
-        $emails = $this->EmailM->get_all_emails($state,$username);
-        $envioArray= array('data' => $emails);
+      { 
+        $envioArray= array();
+        $envioArray['emails']=$this->EmailM->get_all_emails($state,$username);
+        $envioArray['username']=$username;
+        $envioArray['state']=$state;
         $this->load->view('email/index',$envioArray);
       }
       else
@@ -111,7 +113,7 @@ class Email extends CI_Controller {
 
                 $this->session->set_flashdata('message', "Actualizado con éxito.");
                 }
-                redirect('email/index/' . $id, 'refresh');
+                redirect('email/index/1' . $id, 'refresh');
                 return;
             } 
             else 
@@ -136,10 +138,21 @@ class Email extends CI_Controller {
                 $Email = $this->EmailM->get($id);
                 $this->EmailM->delete($id);
                 $this->session->set_flashdata('message', "Eliminado con éxito.");
-                redirect('Email/index/', 'refresh');
+                redirect('Email/index/1', 'refresh');
                 return;
 
     }
+
+      public function guardarBorrador($destinatario,$asunto,$cuerpo)
+      {
+        $username = $session_id = $this->session->userdata('currentUser');
+
+        $this->load->Model('Email_Model', 'EmailM', 'default');
+        $this->EmailM->guardarBorrador($informacion,$destinatario,$asunto);
+        redirect('../../Email/index/0/');
+        return;
+
+        }
 
 }
 ?>
