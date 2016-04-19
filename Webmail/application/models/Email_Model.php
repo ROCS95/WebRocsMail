@@ -11,22 +11,74 @@ class Email_Model extends CI_Model
                 parent::__construct();
         }
 	
-	function get_send()
-	{
-		$tipo = 1;
-		$this->db->where('estado', $tipo);
-		$query= $this->db->get($this->table);
-			if($query->num_rows()>0)
-			{
-				$result=array();
-				foreach($query->result_array() as $row)
-				{
-					array_push($result, $row);
-				}
-			return $result;
-			}
-		return null;
-	}
+	function get_all_emails($state,$username)
+    {
+      $this->db->select('*');
+      $this->db->where('remitente', $username);
+      $this->db->where('estado', $state);
+
+      $query = $this->db->get($this->table);
+
+        if ($query->num_rows() > 0)
+        {
+            $result = array();
+
+            foreach($query->result_array() as $row)
+            {
+
+              array_push($result, $row);
+            }
+            return $result;
+          }
+
+       return NULL;
+    }
+
+    function get_all_email_pending($state)
+    {
+      $this->db->select('*');
+      $this->db->where('estado', $state);
+
+      $query = $this->db->get($this->table);
+
+        if ($query->num_rows() > 0)
+        {
+            $result = array();
+
+            foreach($query->result_array() as $row)
+            {
+
+              array_push($result, $row);
+            }
+            return $result;
+          }
+
+       return NULL;
+    }
+
+//trae solo los emails q se solicitan ya sean pendientes o enviados
+    function get_emailSelection()
+    {
+      $this->db->select('*');
+      $username = $session_id = $this->session->userdata('currentUser');
+      $this->db->where('remitente', $username);
+
+      $query = $this->db->get($this->table);
+
+      if ($query->num_rows() > 0)
+      {
+          $result = array();
+
+          foreach($query->result_array() as $row)
+          {
+
+            array_push($result, $row);
+          }
+          return $result;
+        }
+
+     return NULL;
+     }
 
 	function get($id) {
 

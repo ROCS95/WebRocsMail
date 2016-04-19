@@ -36,6 +36,22 @@ class User extends CI_Controller {
 		$userArray['message'] = $this->session->flashdata('message');
 		$this->load->view('user/index',$userArray);
 	}
+    
+    public function active($id)
+    {
+     $this->load->Model('User_Model', 'UserM', 'default');
+     $answer=$this->UserM->active($id);
+     $username=$this->UserM->search($id);
+     if($answer=="Yes")
+     {
+      redirect('../../../');
+     }
+     if($answer=="No")
+     {
+      redirect('../../../');
+     }
+
+    }
 
 	function save() {
 
@@ -53,7 +69,7 @@ class User extends CI_Controller {
             $data['last_name'] = $this->input->post('last_name');
             $data['email'] = $this->input->post('mail');
             $data['other_email'] = $this->input->post('omail');
-            $data['password'] = $this->input->post('pass');
+            $data['password'] = md5($this->input->post('pass'));
 
 
             $id_user=$this->input->post('id');
@@ -93,13 +109,13 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('password', 'password', 'required|max_length[200]');
 
             $mail['email'] = $this->input->post('email');
-            $pass['password'] = $this->input->post('password]');
+            $pass['password'] = md5($this->input->post('password'));
 
             $this->load->Model('User_Model', 'UserM', 'default');
 
             $user = $this->UserM->autentificar($mail, $pass);
-            if ($user != "") {
-               redirect('Email/index/', 'refresh');
+            if ($user != Null) {
+               redirect('Email/index/1', 'refresh');
             }else{
                 redirect('user/index/', 'refresh');
             }

@@ -27,17 +27,52 @@ class User_Model extends CI_Model
 		return NULL;
 	}
 
+
+
 	function autentificar($email, $password) {
 
-        $data = $this->db->query('SELECT name, last_name FROM user WHERE email = '.'\''.$email.'\''.' && password = '.'\''.$password.'\'');
-        //return $this->db->get($this->table)->first_row();
-        if ($data > 0) {
-        	return $data;
+        $data = $this->db->query('SELECT name, last_name FROM user WHERE email = '.'\''.$email.'\''.' AND password = '.'\''.$password.'\'');
+        //$this->db->select('name');
+        //$this->db->select(last_name);
+        //$this->db->WHERE('email' , $email);
+        //$this->db->WHERE('password' , $password);
+        //$query = $this->db->get($this->table);
+        if ($data != null/*$query->num_rows() === 1*/) {
+        	return $data /*$query*/;
         }else{
         	return null;
         }
     }
 
+    function active($id)
+    {
+      $data = array(
+               'state' => 1
+            );
+
+      $this->db->where('id', $id);
+      $query=$this->db->update($this->table, $data);
+       if ($this->db->affected_rows() > 0)
+      {
+       return "Yes";
+      }
+
+      else
+      {
+          return "No";
+      }
+    }
+
+     function search($id)
+    {
+      //$this->load->helper('security');
+      //$password = do_hash($password);
+      $this->db->select('username');
+      $this->db->where('id', $id);
+
+      $query = $this->db->get($this->table);
+      return $query->username;
+    }
 	function create($data)
 	{
 		$this->db->insert($this->table,$data);

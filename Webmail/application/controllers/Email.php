@@ -28,14 +28,52 @@ class Email extends CI_Controller {
         
     }
 
-	public function index()
+	public function index($state)
 	{
-		$this->load->Model('Email_Model', 'EmailM', 'default');
-		$emails = $this->EmailM->get_send();
-		$emailArray = array('data' => $emails);
-		$emailArray['message'] = $this->session->flashdata('message');
-		$this->load->view('email/index',$emailArray);
+     $username = $session_id = $this->session->userdata('currentUser');
+
+      $this->load->Model('Email_Model', 'EmailM', 'default');
+
+      if($state==1||$state==2||$state==3)
+      {
+        $emails = $this->EmailM->get_all_emails($state,$username);
+        $envioArray= array('data' => $emails);
+        $this->load->view('email/index',$envioArray);
+      }
+      else
+      {
+        $emails = $this->EmailM->get_emailSelection();
+        $envioArray= array('data' => $emails);
+        $this->load->view('email/index',$envioArray);
+        return;
+      }
 	}
+
+    public function sendLinkUsuario()
+      {
+      $username = $session_id = $this->session->userdata('currentUser');
+      $destinatario = $session_id = $this->session->userdata('currentDestinatario');
+      $id = $session_id = $this->session->userdata('currentId');
+
+      $informacion="http://proyectowebi.dev/index.php/Usuario/active/".$id;
+      $this->load->library('email','','correo');
+      $this->correo->from("rocks@gmail.com", "CorreoRocks"); // correo sin espacio
+      $this->correo->to($destinatario); // correo sin espacio
+      $this->correo->subject("Activar usuario");
+      $this->correo->message($informacion);
+      if($this->correo->send())
+      {
+        redirect('../../../');
+        return;
+      }
+      else
+      {
+      show_error($this->correo->print_debugger());
+      }
+         redirect('../../Email/index/0/');
+         return;
+
+    }
 
 	function save() {
 
