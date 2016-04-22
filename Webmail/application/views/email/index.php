@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <p>
 
-                        <a onclick="charge_modal()" href="#" data-target="#myModal" data-toggle="modal" class="btn">
+                        <a onclick="charge_mymoda(0,$username)" href="#" data-target="#myModal" data-toggle="modal" class="btn">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             Nuevo Correo
                         </a>
@@ -70,7 +70,7 @@ echo '<a href="../delete/' . $app['id'] . '" role="button"><span class="glyphico
     </div> 
 </div>      
 <!-- Modal -->
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="myModal" class="modal fade in" tabindex="-1" data-backdrop="static"role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -78,6 +78,7 @@ echo '<a href="../delete/' . $app['id'] . '" role="button"><span class="glyphico
                 <h4 class="modal-title" id="myModalLabel">Correo</h4>
             </div>    
            <?php echo form_open('Email/save/'); ?>
+
                 <div class="form-group col-xs-12">
                     <label for="remitente">Remitente</label>
                     <input id="remitente" name="remitente" type="email" readonly="readonly" class="form-control" value = "<?php echo $username; ?>">
@@ -90,15 +91,25 @@ echo '<a href="../delete/' . $app['id'] . '" role="button"><span class="glyphico
                     <label for="asunto">Asunto</label>
                     <input id="asunto" name="asunto" type="text" class="form-control">
                 </div>
+
                 <div class="form-group">
                     <div class="col-xs-12">
                         <label for="cuerpo">cuerpo</label>
                         <textarea id="cuerpo" name="cuerpo" type="text" rows="10" class="form-control"></textarea>
                     </div>
-                </div>              
+
+                </div>
+                <div class="col-xs-12">
+                       <select class="form-control" name="state" id="state">
+                        <option value="1">Enviar</option>
+                        <option value="3">Guardar</option>
+                    </select>
+                </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" id="id"/>
-                    <button type="submit" id="btnsend"class="btn" >Enviar</button>
+
+                    
+                    <button type="submit" id="btnsend"class="btn" >Submit</button>
                 </div>
             <?php echo form_close(); ?>
             </div>
@@ -106,7 +117,7 @@ echo '<a href="../delete/' . $app['id'] . '" role="button"><span class="glyphico
     </div>
 
     <!-- Modal -->
-<div id="secModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="secModal" class="modal fade in" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -114,21 +125,21 @@ echo '<a href="../delete/' . $app['id'] . '" role="button"><span class="glyphico
                 <h4 class="modal-title" id="myModalLabel">Correo</h4>
             </div>    
                 <div class="form-group col-xs-12">
-                    <label for="remitente">Remitente</label>
-                    <input id="remitente" name="remitente" type="email" readonly="readonly" class="form-control" value = "<?php echo $username; ?>">
+                    <label for="remit">Remitente</label>
+                    <input id="remit" name="remit" type="email" readonly="readonly" class="form-control">
                 </div>
                 <div class="form-group col-xs-12">
-                    <label for="destinatario">Destinatario</label>
-                    <input id="destinatario" name="destinatario" type="email" readonly="readonly" class="form-control">
+                    <label for="dest">Destinatario</label>
+                    <input id="dest" name="dest" type="email" readonly="readonly" class="form-control">
                 </div>
                 <div class="form-group col-xs-12">
-                    <label for="asunto">Asunto</label>
-                    <input id="asunto" name="asunto" type="text" readonly="readonly" class="form-control">
+                    <label for="asun">Asunto</label>
+                    <input id="asun" name="asun" type="text" readonly="readonly" class="form-control">
                 </div>
                 <div class="form-group">
                     <div class="col-xs-12">
-                        <label for="cuerpo">cuerpo</label>
-                        <textarea id="cuerpo" name="cuerpo" readonly="readonly" type="text" rows="10" class="form-control"></textarea>
+                        <label for="cuer">cuerpo</label>
+                        <textarea id="cuer" name="cuer" readonly="readonly" type="text" rows="10" class="form-control"></textarea>
                     </div>
                 </div>              
                 <div class="modal-footer">

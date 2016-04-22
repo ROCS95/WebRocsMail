@@ -33,17 +33,38 @@ function charge_mymodal(id,remitente,destinatario,asunto,cuerpo)
     });
 };
 
-function charge_modal(id,remitente,destinatario,asunto,cuerpo)
+function charge_mymoda(id,remitente,destinatario,asunto,cuerpo,state)
 {   
+  
     $("#id").val(id);
     $("#remitente").val(remitente);
     $("#destinatario").val(destinatario);
     $("#asunto").val(asunto);
     $("#cuerpo").val(cuerpo);
+    $("#state").val(state);
+    $('#myModal').data('show-callback', function() 
+    {
+    $("#remitente").focus();
+   
+
+    });
+};
+//Refresca el modal.
+$('#myModal').on('hidden.bs.modal', function () {
+ location.reload();
+})
+
+function charge_modal(id,remit,dest,asun,cuer)
+{   
+    //$("#id").val(id);
+    $("#remit").val(remit);
+    $("#dest").val(dest);
+    $("#asun").val(asun);
+    $("#cuer").val(cuer);
 
     $('#secModal').data('show-callback', function() 
     {
-    $("#remitente").focus();
+    $("#remit").focus();
    
 
     });

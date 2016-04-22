@@ -117,7 +117,7 @@ class User extends CI_Controller {
             if ($user =='NO') {
                redirect('User/index/', 'refresh');
             }else{
-               $this->session->userdata('currentUser');
+               $this->session->userdata('email');
                 redirect('Email/index/1', 'refresh');
                 
             }

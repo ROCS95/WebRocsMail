@@ -30,8 +30,9 @@ class Email extends CI_Controller {
 
 	public function index($state)
 	{
-     $username = $this->session->userdata('currentUser');
-
+     //$this->load->library('session');
+     $username = $this->session->userdata('email');
+       
       $this->load->Model('Email_Model', 'EmailM', 'default');
       $username = "rtchacon@gmail.com";
       if($state==1||$state==2||$state==3)
@@ -93,7 +94,7 @@ class Email extends CI_Controller {
             $data['destinatario'] = $this->input->post('destinatario');
             $data['asunto'] = $this->input->post('asunto');
             $data['cuerpo'] = $this->input->post('cuerpo');
-            $data['estado'] = 1;
+            $data['estado'] = $this->input->post('state');;
 
 
             $id_email=$this->input->post('id');
@@ -101,11 +102,12 @@ class Email extends CI_Controller {
             if ($this->form_validation->run() == true)
             {
                 $this->load->Model('Email_Model', 'EmailM', 'default');
-                if($id_email==="")
+                if($id_email==0)
                 {
                 $id = $this->EmailM->create($data);
 
                 $this->session->set_flashdata('message', "Creado con éxito.");  
+                
                 }
                 else
                 {
@@ -120,7 +122,7 @@ class Email extends CI_Controller {
             {
                 $this->session->set_flashdata('dataP', $data);
                 $this->session->set_flashdata('warning', validation_errors());
-                redirect('email/index/', 'refresh');
+                redirect('email/index/2', 'refresh');
                 return;
             }
 
@@ -143,16 +145,6 @@ class Email extends CI_Controller {
 
     }
 
-      public function guardarBorrador($destinatario,$asunto,$cuerpo)
-      {
-        $username = $session_id = $this->session->userdata('currentUser');
-
-        $this->load->Model('Email_Model', 'EmailM', 'default');
-        $this->EmailM->guardarBorrador($informacion,$destinatario,$asunto);
-        redirect('../../Email/index/0/');
-        return;
-
-        }
-
+      
 }
 ?>
