@@ -42,7 +42,7 @@
                                             <td><?php echo $app['asunto']; ?></td>
                                             <td>
        <?php
-       if ($state == 1 || $state == 3) {
+       if ($state == 2 || $state == 3) {
 echo '<a onclick="charge_mymodal(' . $app['id'] .',\'' . $app['remitente'] . '\''. ',\'' . $app['destinatario'] . '\''. ',\'' . $app['asunto'] . '\''. ',\''. $app['cuerpo'] .'\')" href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>';
 }else{
 echo '<a onclick="charge_modal(' . $app['id'] .',\'' . $app['remitente'] . '\''. ',\'' . $app['destinatario'] . '\''. ',\'' . $app['asunto'] . '\''. ',\''. $app['cuerpo'] .'\')" href="#" data-target="#secModal" data-toggle="modal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>';
@@ -101,7 +101,7 @@ echo '<a href="../delete/' . $app['id'] . '" role="button"><span class="glyphico
                 </div>
                 <div class="col-xs-12">
                        <select class="form-control" name="state" id="state">
-                        <option value="1">Enviar</option>
+                        <option value="2">Enviar</option>
                         <option value="3">Guardar</option>
                     </select>
                 </div>

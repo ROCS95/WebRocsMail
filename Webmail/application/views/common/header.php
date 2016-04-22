@@ -33,17 +33,17 @@
                 <ul class="nav navbar-nav navbar-right">
                     
                                 <li>
-                                    <a title="Salida" href="<?php echo base_url("index.php/email/index/1") ?>"><span class="glyphicon glyphicon-send" aria-hidden="true">Salida</span></a>
+                                    <a title="Salida" href="<?php echo base_url("index.php/email/index/2") ?>"><span class="glyphicon glyphicon-send" aria-hidden="true">Salida</span></a>
                                 </li>
                                 <li>
-                                    <a title="Enviados" href="<?php echo base_url("index.php/email/index/2") ?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true">Enviados</span></a>
+                                    <a title="Enviados" href="<?php echo base_url("index.php/email/index/1") ?>"><span class="glyphicon glyphicon-eye-open" aria-hidden="true">Enviados</span></a>
                                 </li>
                                 <li>
                                     <a title="Borradores" href="<?php echo base_url("index.php/email/index/3") ?>"><span class="glyphicon glyphicon-list-alt" aria-hidden="true">Borradores</span></a>
                                 </li>
                                 <li>
                                     <?php
-                                    echo'<a title="Cerrar Sesión" href="' . base_url("") . '"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>';
+                                    echo'<a title="Cerrar Sesión" href="' . base_url("index.php/user/logout") . '"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>';
                                     ?>
                                 </li>
                                 

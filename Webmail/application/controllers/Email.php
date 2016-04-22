@@ -23,7 +23,7 @@ class Email extends CI_Controller {
 
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-      	//$this->load->library('security');
+      	$this->load->library('email');
       	$this->load->library('session');
         
     }
@@ -34,7 +34,7 @@ class Email extends CI_Controller {
      $username = $this->session->userdata('email');
        
       $this->load->Model('Email_Model', 'EmailM', 'default');
-      $username = "rtchacon@gmail.com";
+      //$username = "rtchacon@gmail.com";
       if($state==1||$state==2||$state==3)
       { 
         $envioArray= array();
@@ -54,27 +54,54 @@ class Email extends CI_Controller {
 
     public function sendLinkUsuario()
       {
-      $username = $session_id = $this->session->userdata('currentUser');
-      $destinatario = $session_id = $this->session->userdata('currentDestinatario');
-      $id = $session_id = $this->session->userdata('currentId');
+      $this->load->library('email');
 
-      $informacion="http://proyectowebi.dev/index.php/Usuario/active/".$id;
-      $this->load->library('email','','correo');
-      $this->correo->from("rocks@gmail.com", "CorreoRocks"); // correo sin espacio
-      $this->correo->to($destinatario); // correo sin espacio
-      $this->correo->subject("Activar usuario");
-      $this->correo->message($informacion);
-      if($this->correo->send())
+      //$username = $session_id = $this->session->userdata('currentUser');
+      $destinatario =$this->session->userdata('currentDestinatario');
+      $id = $this->session->userdata('currentId');
+      $token = $this->session->userdata('currentToken');
+
+      $informacion="http://[::1]/WebRocsMail/Webmail/index.php/User/active/".$id."/".$token;
+
+      $this->email->from("agiita2010@gmail.com", "CorreoRocks"); // correo sin espacio
+      $this->email->to($destinatario); // correo sin espacio
+      $this->email->subject("Activar usuario");
+      $this->email->message($informacion);
+      if($this->email->send())
       {
-        redirect('../../../');
+        redirect('email/index/1');
         return;
       }
       else
       {
-      show_error($this->correo->print_debugger());
+      show_error($this->email->print_debugger());
       }
          redirect('../../Email/index/0/');
          return;
+       }
+//envia por el cronjob o tareas 
+      public function enviar()
+      {
+      $this->load->Model('Email_Model', 'EmailM', 'default');
+
+      $arrayEmails = $this->EmailM->get_all_email_pending(2);
+if( !empty($arrayEmails) ) {
+      foreach ($arrayEmails as $email) {
+
+        $this->load->library('email','','correo');
+        $this->correo->from($email['remitente'], $email['remitente']); // correo sin espacio
+        $this->correo->to($email['destinatario']); // correo sin espacio
+        $this->correo->subject($email['asunto']);
+        $this->correo->message($email['cuerpo']);
+
+        if($this->correo->send())
+        {
+          $this->EmailM->editarEstado($email['id'], 1);
+
+        }
+      }
+    }
+    else{ echo "muerase";}
 
     }
 
@@ -108,6 +135,7 @@ class Email extends CI_Controller {
 
                 $this->session->set_flashdata('message', "Creado con éxito.");  
                 
+
                 }
                 else
                 {
@@ -144,7 +172,6 @@ class Email extends CI_Controller {
                 return;
 
     }
-
       
 }
 ?>

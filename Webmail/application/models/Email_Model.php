@@ -86,7 +86,17 @@ class Email_Model extends CI_Model
         return $this->db->get($this->table)->first_row();
     }
 
+  function editarEstado($id, $estado)
+        {
+          $data = array
+          (
+          'estado' => $estado
+         );
 
+        $this->db->where('id', $id);
+        $this->db->update($this->table, $data);
+
+        }
 
 	function create($data)
 	{

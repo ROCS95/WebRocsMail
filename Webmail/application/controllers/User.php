@@ -37,19 +37,16 @@ class User extends CI_Controller {
 		$this->load->view('user/index',$userArray);
 	}
     
-    public function active($id)
+    public function active($id,$token)
     {
      $this->load->Model('User_Model', 'UserM', 'default');
-     $answer=$this->UserM->active($id);
-     $username=$this->UserM->search($id);
+     $answer=$this->UserM->active($id,$token);
+     $username=$this->UserM->search($id,$token);
      if($answer=="Yes")
      {
-      redirect('../../../');
+      redirect('User/index');
      }
-     if($answer=="No")
-     {
-      redirect('../../../');
-     }
+     
 
     }
 
@@ -70,6 +67,7 @@ class User extends CI_Controller {
             $data['email'] = $this->input->post('mail');
             $data['other_email'] = $this->input->post('omail');
             $data['password'] = md5($this->input->post('pass'));
+            $data['token']= bin2hex(openssl_random_pseudo_bytes(16));
 
 
             $id_user=$this->input->post('id');
@@ -81,7 +79,13 @@ class User extends CI_Controller {
                 {
                 $id = $this->UserM->create($data);
 
-                $this->session->set_flashdata('message', "Creado con éxito.");  
+                $this->session->set_flashdata('message', "Creado con éxito.");
+
+                $this->session->set_userdata('currentDestinatario', $data['other_email']);
+                $this->session->set_userdata('currentUser', $data['email']);
+                $this->session->set_userdata('currentId', $id);
+                $this->session->set_userdata('currentToken', $data['token']);
+                redirect('email/sendLinkUsuario/');
                 }
                 else
                 {
@@ -117,11 +121,18 @@ class User extends CI_Controller {
             if ($user =='NO') {
                redirect('User/index/', 'refresh');
             }else{
-               $this->session->userdata('email');
+               $this->session->set_userdata('email', $mail);
                 redirect('Email/index/1', 'refresh');
+               
                 
             }
 
+    }
+
+    function logout(){
+        $username =$this->session->userdata('currentUser');
+        $this->session->unset_userdata($username);
+     redirect('User/index');
     }
 
 }

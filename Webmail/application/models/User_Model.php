@@ -34,6 +34,7 @@ class User_Model extends CI_Model
         $query=$this->db->select('email')
                         ->where('email',$email)
                         ->where('password',$password)
+                        ->where('state',1)
                         ->get('user');
       
         if($query->num_rows()>0)
@@ -45,13 +46,14 @@ class User_Model extends CI_Model
     }
     
 
-    function active($id)
+    function active($id,$token)
     {
       $data = array(
                'state' => 1
             );
 
       $this->db->where('id', $id);
+      $this->db->where('token', $token);
       $query=$this->db->update($this->table, $data);
        if ($this->db->affected_rows() > 0)
       {
@@ -64,12 +66,13 @@ class User_Model extends CI_Model
       }
     }
 
-     function search($id)
+     function search($id,$token)
     {
       //$this->load->helper('security');
       //$password = do_hash($password);
-      $this->db->select('username');
+      $this->db->select('email');
       $this->db->where('id', $id);
+        $this->db->where('token', $token);
 
       $query = $this->db->get($this->table);
       return $query->username;
